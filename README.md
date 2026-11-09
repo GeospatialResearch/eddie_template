@@ -2,7 +2,7 @@ Copyright © 2021-2026 Geospatial Research Institute Toi Hangarau
 
 # Environmental Digital Data Intelligence Engine (EDDIE) Plugin Template
 
-![image](paper/Capture2024.PNG)
+![image](https://raw.githubusercontent.com/GeospatialResearch/eddie_floodresilience/refs/heads/main/paper/Capture2024.PNG)
 
 ## Introduction
 A template repository to be used to quickly start new EDDIE Digital Twin applications.
@@ -18,7 +18,7 @@ You can find a working example of an EDDIE application based on this template at
 ### Requirements
 
 * [Docker](https://www.docker.com/)
-* [CUDA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+* [CUDA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) (If using GPU for processing)
 
 ### Officially Supported Operating Systems
 
@@ -80,4 +80,4 @@ be the best way to reach us.
 ## Setup for FReDT project software developers
 
 [Visit our wiki](https://github.com/GeospatialResearch/Digital-Twins/wiki/) for some instructions on how to set up your
-development machine to work with on the FReDT project.
+development machine to ease development on an EDDIE project
