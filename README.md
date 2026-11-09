@@ -7,6 +7,9 @@ Copyright © 2021-2026 Geospatial Research Institute Toi Hangarau
 ## Introduction
 A template repository to be used to quickly start new EDDIE Digital Twin applications.
 
+[See our page on writing a plugin](https://github.com/GeospatialResearch/Digital-Twins/wiki/Writing-a-plugin) for detail
+on how to develop a plugin for EDDIE.
+
 ## Basic running instructions
 
 The following list defines the basic steps required to set up and run the digital twin.
@@ -77,7 +80,10 @@ If you are interested in contributing to this project, please see [our contribut
 If you run into an issue, bug, or need help with the software, please consider opening an issue or discussion, this will
 be the best way to reach us.
 
-## Setup for FReDT project software developers
+## Setup for EDDIE project software developers
 
 [Visit our wiki](https://github.com/GeospatialResearch/Digital-Twins/wiki/) for some instructions on how to set up your
 development machine to ease development on an EDDIE project
+
+[See our page on writing a plugin](https://github.com/GeospatialResearch/Digital-Twins/wiki/Writing-a-plugin) for detail
+on how to develop a plugin for EDDIE.
