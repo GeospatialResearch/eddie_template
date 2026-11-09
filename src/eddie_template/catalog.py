@@ -17,18 +17,27 @@
 
 """Defines TerriaJS Catalog items used by this template example app."""
 
-#: TerriaJS Catalog items used by this template example app.
-catalog: list[dict] = [
-    {
-        "type": "group",
-        "name": "EDDIE Template",
-        "members": [
-            {
-                "type": "wms",
-                "name": "OpenStreetMap",
-                "url": "https://ows.terrestris.de/osm/service",
-                "layers": "OSM-WMS"
-            },
-        ]
-    }
-]
+
+def catalog() -> list[dict]:
+    """
+    Return TerriaJS Catalog items used by this template example app.
+
+    Returns
+    -------
+    list[dict]
+        TerriaJS Catalog items used by this template example app.
+    """
+    return [
+        {
+            "type": "group",
+            "name": "EDDIE Template",
+            "members": [
+                {
+                    "type": "wms",
+                    "name": "OpenStreetMap",
+                    "url": "https://ows.terrestris.de/osm/service",
+                    "layers": "OSM-WMS"
+                },
+            ]
+        }
+    ]
