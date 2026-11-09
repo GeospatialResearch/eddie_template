@@ -50,6 +50,11 @@ jobs:
       - name: Install Eddie library
         run: |
           # Deps pinned in environment.yml; --only-binary blocks downloaded sdists (pip still builds this project)
+          python -m pip install --no-deps --only-binary=:all: lib/eddie
+
+      - name: Install this plugin's library
+        run: |
+          # Deps pinned in environment.yml; --only-binary blocks downloaded sdists (pip still builds this project)
           python -m pip install --no-deps --only-binary=:all: .
 
       - name: Run lint with pylint
@@ -83,6 +88,11 @@ jobs:
           micromamba config list
 
       - name: Install Eddie library
+        run: |
+          # Deps pinned in environment.yml; --only-binary blocks downloaded sdists (pip still builds this project)
+          python -m pip install --no-deps --only-binary=:all: lib/eddie
+
+      - name: Install this plugin's library
         run: |
           # Deps pinned in environment.yml; --only-binary blocks downloaded sdists (pip still builds this project)
           python -m pip install --no-deps --only-binary=:all: .
