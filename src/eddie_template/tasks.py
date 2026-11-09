@@ -41,6 +41,11 @@ setup_logging()
 log = logging.getLogger(__name__)
 
 
+@celery_setup_logging_signal.connect
+def configure_celery_logging(*_args: tuple, **_kwargs: dict) -> None:  # pylint: disable=missing-param-doc
+    """Set up celery logging to use the same logging as if running the modules directly."""
+    setup_logging(LogLevel.INFO)
+
 
 @signals.worker_ready.connect
 def on_startup(sender: Consumer, **_kwargs: None) -> None:  # pylint: disable=missing-param-doc

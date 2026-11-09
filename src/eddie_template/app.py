@@ -16,25 +16,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """The main web application that serves the Digital Twin to the web through a Rest API."""
-from http.client import OK
 import importlib
 import logging
+from http.client import OK
 
-from dotenv import load_dotenv
-from flask import Flask, Response, jsonify, make_response
+from flask import Flask, jsonify, make_response, Response
 from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
 
 from eddie.check_celery_alive import check_celery_alive
-from eddie.digitaltwin.utils import setup_logging
+from eddie.config import EnvVariable
 from eddie.discover_plugins import discover_plugins
 from eddie.geoserver import get_terria_catalog
-from src.eddie_template import blueprint as eddie_template_blueprint
-
-setup_logging()
 
 # Initialise flask server object
-load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
@@ -44,7 +39,7 @@ API_URL = "/static/api_documentation.yml"
 swagger_ui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
-    config={"app_name": "EDDIE (Template)"}
+    config={"app_name": EnvVariable.EDDIE_INSTANCE_TITLE}
 )
 app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
 
@@ -53,11 +48,8 @@ for name, module in eddie_plugins.items():
     importlib.import_module(f"{name}.blueprint")
     app.register_blueprint(module.blueprint.blueprint)
 
-# Flood Resilience specific blueprint
-app.register_blueprint(eddie_template_blueprint.blueprint)
 
-
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index() -> Response:
     """
     Ping this endpoint to check that the flask app is running.
@@ -75,7 +67,7 @@ def index() -> Response:
     """, OK)
 
 
-@app.route('/health-check')
+@app.route('/health-check', methods=['GET'])
 @check_celery_alive
 def health_check() -> Response:
     """
@@ -90,7 +82,7 @@ def health_check() -> Response:
     return Response("Healthy", OK)
 
 
-@app.route('/terria-catalog.json')
+@app.route('/terria-catalog.json', methods=['GET'])
 def terria_catalog() -> Response:
     """
     Return a terria catalog that includes entries for static files and input layers from geoserver.

@@ -1,13 +1,10 @@
 """Endpoints and flask configuration for this template example app"""
-from http.client import ACCEPTED
 import os
 import pathlib
 
-from flask import Blueprint, jsonify, make_response, Response
+from flask import Blueprint
 
 from eddie.check_celery_alive import check_celery_alive
-from src.eddie_template import tasks
-from src.eddie_template.flood_model.flood_scenario_process_service import FloodScenarioProcessService
 
 os.environ.pop("Path", None)
 # See issue https://github.com/GeospatialResearch/eddie_floodresilience/issues/1 for reason behind disabled QA
@@ -15,14 +12,14 @@ from pywps import Service  # pylint: disable=wrong-import-position,wrong-import-
 
 blueprint = Blueprint('eddie_template', __name__)
 processes = [
-    # Place any imported PyWPS processes here
 ]
 
-process_descriptor = {process.identifier: process.abstract for process in processes}
 service = Service(processes, ['src/pywps.cfg'])
 for working_dir in ["workdir", "outputs", "logs"]:
     path = pathlib.Path("./tmp/pywps") / working_dir
     path.mkdir(exist_ok=True, parents=True)
+process_descriptor = {process.identifier: process.abstract for process in processes}
+service = Service(processes, ['src/pywps.cfg'])
 
 
 @blueprint.route('/wps', methods=['GET', 'POST'])
