@@ -1,6 +1,6 @@
 Copyright © 2021-2026 Geospatial Research Institute Toi Hangarau
 
-# EDDIE Template
+# Environmental Digital Data Intelligence Engine (EDDIE) Plugin Template
 
 ![image](paper/Capture2024.PNG)
 
