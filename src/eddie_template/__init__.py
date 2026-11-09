@@ -19,7 +19,9 @@
 __version__ = "0.0.2"
 
 from .catalog import catalog
+from .processes import processes
 
 __all__ = [
     "catalog",
+    "processes",
 ]

@@ -17,3 +17,8 @@
 
 """Defines WPS processes for this template example app."""
 
+from pywps import Process
+
+processes: list[Process] = [
+    # PyWPS processes go here
+]

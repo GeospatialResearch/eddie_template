@@ -16,12 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """Endpoints and flask configuration for this template example app"""
-import os
-import pathlib
 
 from flask import Blueprint
-
-from eddie.check_celery_alive import check_celery_alive
 
 blueprint = Blueprint('eddie_template', __name__)
 

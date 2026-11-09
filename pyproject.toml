@@ -12,7 +12,7 @@ version = "0.0.2"
 description = "A module for EDDIE."
 readme = "README.md"
 authors = [{ name = "Luke Parkinson", email = "luke.parkinson@canterbury.ac.nz" }]
-license = { file = "LICENSE" }
+license = "AGPL-3.0-only"
 keywords = ["EDDIE", "Digital Twin", "Geospatial"]
 dependencies = [
     "aiohttp",
@@ -38,6 +38,7 @@ requires-python = ">=3.11"
 template = "eddie_template"
 
 [tool.setuptools]
+package-dir = {"" = "src"}
 packages = ["eddie_template"]
 
 [project.optional-dependencies]
