@@ -20,26 +20,24 @@ Runs backend tasks using Celery. Allowing for multiple long-running tasks to com
 Allows the frontend to send tasks and retrieve status later.
 """
 import logging
-from typing import Dict, List, NamedTuple, Union
+import pathlib
 
-from celery import result, signals
+from celery import signals
+from celery.signals import setup_logging as celery_setup_logging_signal
 from celery.worker.consumer import Consumer
 import geopandas as gpd
-from pyproj import Transformer
-import xarray
 
-from eddie.digitaltwin import cache_new_results, check_cache_results, retrieve_from_instructions, setup_environment
-from eddie.digitaltwin.utils import setup_logging
-from eddie.tasks import OnFailureStateTask, add_base_data_to_db, app, wkt_to_gdf  # pylint: disable=cyclic-import
-from src.eddie_template.dynamic_boundary_conditions.rainfall import main_rainfall
-from src.eddie_template.dynamic_boundary_conditions.river import main_river
-from src.eddie_template.dynamic_boundary_conditions.tide import main_tide_slr
-from src.eddie_template.flood_model import bg_flood_model, process_hydro_dem
-from src.eddie_template.run_all import DEFAULT_MODULES_TO_PARAMETERS
+from eddie.digitaltwin.utils import setup_logging, LogLevel
+
 
 setup_logging()
 log = logging.getLogger(__name__)
 
+
+@celery_setup_logging_signal.connect
+def configure_celery_logging(*_args: tuple, **_kwargs: dict) -> None:  # pylint: disable=missing-param-doc
+    """Set up celery logging to use the same logging as if running the modules directly."""
+    setup_logging(LogLevel.INFO)
 
 
 @signals.worker_ready.connect
@@ -56,5 +54,9 @@ def on_startup(sender: Consumer, **_kwargs: None) -> None:  # pylint: disable=mi
         # Gather area of interest from file.
         aoi_wkt = gpd.read_file("selected_polygon.geojson").to_crs(4326).geometry[0].wkt
         # Send a task to initialise this area of interest.
-        base_data_parameters = DEFAULT_MODULES_TO_PARAMETERS[retrieve_from_instructions]
-        sender.app.send_task("eddie.tasks.add_base_data_to_db", args=[aoi_wkt, base_data_parameters], connection=conn)
+        instruction_json_path = pathlib.Path("src/eddie_template/static_boundary_instructions.json")
+        sender.app.send_task(
+            "eddie.tasks.add_base_data_to_db",
+            args=[aoi_wkt, str(instruction_json_path)],
+            connection=conn
+        )

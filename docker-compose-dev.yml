@@ -1,5 +1,5 @@
-# Copyright © 2021-2026 Geospatial Research Institute Toi Hangarau
-# LICENSE: https://github.com/GeospatialResearch/eddie_template/blob/master/LICENSE
+# Copyright © 2021-2025 Geospatial Research Institute Toi Hangarau
+# LICENSE: https://github.com/GeospatialResearch/Digital-Twins/blob/master/LICENSE
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -24,25 +24,25 @@ volumes:
 services:
   db_postgres:
     volumes:
-    - postgres_db_vol_dev:/var/lib/postgresql/data
+      - postgres_db_vol_dev:/var/lib/postgresql/data
 
   backend:
     volumes:
-    - ${DATA_DIR_MODEL_OUTPUT}:/stored_data/model_output
+      - ${DATA_DIR_MODEL_OUTPUT}:/stored_data/model_output
 
   celery_worker:
     volumes:
-    # Bind host data directories to container, allowing different instances to share data sources.
-    - ${DATA_DIR}:/stored_data
-    - ${DATA_DIR_MODEL_OUTPUT}:/stored_data/model_output
-    - ${DATA_DIR_GEOSERVER}:/stored_data/geoserver
+      # Bind host data directories to container, allowing different instances to share data sources.
+      - ${DATA_DIR}:/stored_data
+      - ${DATA_DIR_MODEL_OUTPUT}:/stored_data/model_output
+      - ${DATA_DIR_GEOSERVER}:/stored_data/geoserver
 
   terria_map:
     volumes:
-    # Allows development config to be updated on refresh, instead of rebuild
-    - ./terriajs/client_config.json:/app/wwwroot/config.json
-    - ./terriajs/catalog.json:/app/wwwroot/init/catalog.json
+      # Allows development config to be updated on refresh, instead of rebuild
+      - ./terriajs/client_config.json:/app/wwwroot/config.json
+      - ./terriajs/catalog.json:/app/wwwroot/init/catalog.json
 
   geoserver:
     volumes:
-    - ${DATA_DIR_GEOSERVER}:/opt/geoserver_data
+      - ${DATA_DIR_GEOSERVER}:/opt/geoserver_data

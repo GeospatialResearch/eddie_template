@@ -1,2 +1,14 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+./*.iml
+/eddie_floodresilience.iml
+modules.xml
 /material_theme_project_new.xml
 /*.iml

@@ -16,4 +16,12 @@
 
 """Top-level package for the module for this particular EDDIE instance."""
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
+
+from .catalog import catalog
+from .processes import processes
+
+__all__ = [
+    "catalog",
+    "processes",
+]

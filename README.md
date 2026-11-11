@@ -1,11 +1,14 @@
 Copyright © 2021-2026 Geospatial Research Institute Toi Hangarau
 
-# EDDIE Template
+# Environmental Digital Data Intelligence Engine (EDDIE) Plugin Template
 
-![image](paper/Capture2024.PNG)
+![image](https://raw.githubusercontent.com/GeospatialResearch/eddie_floodresilience/refs/heads/main/paper/Capture2024.PNG)
 
 ## Introduction
 A template repository to be used to quickly start new EDDIE Digital Twin applications.
+
+[See our page on writing a plugin](https://github.com/GeospatialResearch/Digital-Twins/wiki/Writing-a-plugin) for detail
+on how to develop a plugin for EDDIE.
 
 ## Basic running instructions
 
@@ -18,7 +21,7 @@ You can find a working example of an EDDIE application based on this template at
 ### Requirements
 
 * [Docker](https://www.docker.com/)
-* [CUDA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+* [CUDA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) (If using GPU for processing)
 
 ### Officially Supported Operating Systems
 
@@ -34,13 +37,7 @@ see [Digital-Twins#358](https://github.com/GeospatialResearch/Digital-Twins/issu
 
 ### Required Credentials:
 
-Create API keys for each of these services. You may need to create an account and log in
-
-* [Stats NZ API Key](https://datafinder.stats.govt.nz/my/api/)
-* [LINZ API Key](https://data.linz.govt.nz/my/api/)
-* [MFE API Key](https://data.mfe.govt.nz/my/api/)
-* [NIWA Application API Key](https://developer.niwa.co.nz/) - Create an app that has the Tide API enabled.
-* [Cesium Ion Access Token](https://ion.cesium.com/tokens)
+Create an [API key for Cesium Ion](https://ion.cesium.com/tokens) if you want to use their services, e.g. for their Terrain Server.
 
 ### Starting the Digital Twin application (localhost)
 
@@ -77,7 +74,10 @@ If you are interested in contributing to this project, please see [our contribut
 If you run into an issue, bug, or need help with the software, please consider opening an issue or discussion, this will
 be the best way to reach us.
 
-## Setup for FReDT project software developers
+## Setup for EDDIE project software developers
 
 [Visit our wiki](https://github.com/GeospatialResearch/Digital-Twins/wiki/) for some instructions on how to set up your
-development machine to work with on the FReDT project.
+development machine to ease development on an EDDIE project
+
+[See our page on writing a plugin](https://github.com/GeospatialResearch/Digital-Twins/wiki/Writing-a-plugin) for detail
+on how to develop a plugin for EDDIE.
