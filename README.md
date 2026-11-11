@@ -37,13 +37,7 @@ see [Digital-Twins#358](https://github.com/GeospatialResearch/Digital-Twins/issu
 
 ### Required Credentials:
 
-Create API keys for each of these services. You may need to create an account and log in
-
-* [Stats NZ API Key](https://datafinder.stats.govt.nz/my/api/)
-* [LINZ API Key](https://data.linz.govt.nz/my/api/)
-* [MFE API Key](https://data.mfe.govt.nz/my/api/)
-* [NIWA Application API Key](https://developer.niwa.co.nz/) - Create an app that has the Tide API enabled.
-* [Cesium Ion Access Token](https://ion.cesium.com/tokens)
+Create an [API key for Cesium Ion](https://ion.cesium.com/tokens) if you want to use their services, e.g. for their Terrain Server.
 
 ### Starting the Digital Twin application (localhost)
 
