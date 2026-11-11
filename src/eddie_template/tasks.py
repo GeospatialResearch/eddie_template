@@ -55,4 +55,8 @@ def on_startup(sender: Consumer, **_kwargs: None) -> None:  # pylint: disable=mi
         aoi_wkt = gpd.read_file("selected_polygon.geojson").to_crs(4326).geometry[0].wkt
         # Send a task to initialise this area of interest.
         instruction_json_path = pathlib.Path("src/eddie_template/static_boundary_instructions.json")
-        sender.app.send_task("eddie.tasks.add_base_data_to_db", args=[aoi_wkt, str(instruction_json_path)], connection=conn)
+        sender.app.send_task(
+            "eddie.tasks.add_base_data_to_db",
+            args=[aoi_wkt, str(instruction_json_path)],
+            connection=conn
+        )
